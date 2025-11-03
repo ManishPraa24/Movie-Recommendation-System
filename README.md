@@ -249,10 +249,57 @@ Flow of implementation
     viii) <b>overview</b>: This contains the summary of the movie. This information is necessary to consider as it kind of characterizes the movie.
 </p>
 <p>
-    ix) 
+    ix) popularity: Gives a popularity factor, higher value means more popularity. This attribute currently don't align with my textual only content-based approach, hence, not considered.
+</p>
+<p>
+    x) production_companies: This information naturally doesn't characterize the movie, hence not used.
+</p>
+<p>
+    xii) production_countries: Same reason as not using the production_companies.
+</p>
+<p>
+    xiii) release_date: Some people might like the movies from a particular era, in that sense release date do matter. But right now, I am not considering the release date.
+</p>
+<p>
+    xiv) revenue: Naturally cannot depict the similarity between the movies.
+</p>
+<p>
+    xv) runtime: Cannot be considered to measure the likliness between the movies.
+</p>
+<p>
+    xvi) spoken_languages: As the regional factor is naturally correlated with the spoken language, I am not consider the spoken language.
+</p>
+<p>
+    xvii) status: It is very optional factor, usually, this dataset contains mostly the publicly available movies on several platforms, hence, this attribute do not provide any help.
+</p>
+<p>
+    xviii) tagline: It depicts the motto of the movie, and that is not enough because the poetic meaning of a movie may mislead the recommendation system.
+</p>
+<p>
+    xix) <b>title</b>: This is the English version of the original_title, hence, I have used this in my recommendation system.
+</p>
+<p>
+    xx) vote_average and vote_count: Not considered for recommendation as these are numeric values. Although a complex recommendation system can also intake the numerical factors.
+</p>
+<p>
+    xxi) <b>cast</b>: Generally the cast, i.e., actors of the movie do influence the people's choice of watching a movie.
+</p>
+<p>
+    xxii) <b>crew</b>: Some crew members like director, do influence on the characteristics of the movie.
 </p>
 
 <p>
     Below is the visualization of count of languages present in the dataset:
 </p>
 <img src="Language_Count.jpg">
+
+<p>
+    Above, it is clearly visible that the dataset contains a majority amount of English movies, hence, consider the movie language or region will create a possible biasness in the recommendation. Therefore, to avoid such scenario, I have not used the language and region factor.
+</p>
+
+<p>
+    I have then created a different dataframe in which stores only the attributes required for recommendation.
+</p>
+<code>
+    extracted_movies_features = merged_movies[['movie_id', 'title', 'overview', 'genres', 'keywords', 'cast', 'crew']]
+</code>
