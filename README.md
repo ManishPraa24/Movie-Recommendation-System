@@ -324,7 +324,7 @@ Flow of implementation
 
 <p>
 <b>
-    Processing 'genres'
+    Feature extraction
 </b>
 </p>
 
@@ -366,3 +366,22 @@ Flow of implementation
 <p>
     Similarly, the attributes 'keywords', 'cast' and 'crew' were processed (a bit differently, that can be seen in Movie_Recommendation.ipynb file) and converted into a list of keywords.
 </p>
+
+<p> After extracting the required text, I remove the spaces in between the text in order to avoid distinguishing of unnecessary words, for example, Science Fiction will be treated a different tokens, rather than considering it being a one whole token by itself. 
+</p>
+
+<p>
+    <b>CODE: </b>
+</p>
+<code>
+    extracted_features['cast'] = extracted_features['cast'].apply(lambda x: [i.replace(" ", "") for i in x])
+
+    extracted_features['crew'] = extracted_features['crew'].apply(lambda x: [i.replace(" ", "") for i in x])
+
+    extracted_features['keywords'] = extracted_features['keywords'].apply(lambda x: [i.replace(" ", "") for i in x])
+
+    extracted_features['overview'] = extracted_features['overview'].apply(lambda x: [i.replace(" ", "") for i in x])
+
+</code>
+
+<p>
