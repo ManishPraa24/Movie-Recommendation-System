@@ -303,3 +303,66 @@ Flow of implementation
 <code>
     extracted_movies_features = merged_movies[['movie_id', 'title', 'overview', 'genres', 'keywords', 'cast', 'crew']]
 </code>
+
+<h2>
+    3. Data cleaning and feature extraction
+</h2>
+
+<p>
+    Checked for any possible null values:
+</p>
+<code>
+    extracted_movie_features.isnull().sum()
+</code>
+
+<p>
+    Found only 3 null values in the overview, hence I dropped the null values.
+</p>
+<code>
+    extracted_movie_features.dropna(inplace=True)
+</code>
+
+<p>
+<b>
+    Processing 'genres'
+</b>
+</p>
+
+<p>
+    The genres attribute has values in the following form: '[{"id": 28, "name": "Action"}, . . .]'
+</p>
+
+<p>
+    It is an array of dictionary that too in string. In order to resolve this, I used a library named <a href="https://docs.python.org/3/library/ast.html">ast</a>.
+</p>
+
+<p>
+    Extracting the "name" field from the dictionary:
+</p>
+
+<code>
+    def extract_values_from_list(list_of_dictionary, key='name'):
+
+        result = []
+
+        if type(list_of_dictionary)==type('as'):
+
+            # literal_eval is the method of ast to use in order to get the string having list of specific values to it's desired form
+
+            list_of_dictionary = ast.literal_eval(list_of_dictionary)
+
+        for item in list_of_dictionary:
+
+            result.append(item[key])
+
+        return result
+
+</code>
+
+<p>
+    Using above code, I extracted only the names containing the genre information.
+</p>
+
+<p>
+    Similarly, the attributes 'keywords', 'cast' and 'crew' were processed (a bit differently, that can be seen in Movie_Recommendation.ipynb file) and converted into a list of keywords.
+</p>
