@@ -201,7 +201,7 @@ Flow of implementation
     As the information in the tmdb_5000_credits.csv like 'cast' and 'crew' is required for further analysis, I merged both the dataframes into one. 
 </p>
 <p>
-    CODE:
+    <b>CODE:</b>
 </p>
 <code>
     MOVIE_CSV = r"Dataset/tmdb_5000_movies.csv"
@@ -211,3 +211,43 @@ Flow of implementation
     movies = pd.read_csv(MOVIE_CSV)
     credits = pd.read_csv(CREDITS_CSV)
 </code>
+<p>
+    I am merging both the dataframes based on 'title' as title is unique for all possible movies in this case.
+</p>
+<code>
+    merged_movies = movies.merge(credits, on='title')
+</code>
+
+<h2>
+    2. Analysis of attributes
+</h2>
+<p>
+    Attributes considered for recommendation system build-up are in <b>bold</b> font.
+</p>
+<p>
+    i) budget: As it depicts the price of making a movie, usually a high budget film may attract good ratings. Being a numeric value, I will not use in my recommendation system.
+</p>
+<p>
+    ii) <b>genres</b>: Depicts type of the movie. Used for recommendation as it helps to find the similar movie.
+</p>
+<p>
+    iii) homepage: Not required as it not helps in finding similar movie. A URL is always unique.
+</p>
+<p>
+    iv) movie_id: I have not used this but it is required for fetching the movie related information. This movie_id is provided by the TMDB.
+</p>
+<p>
+    v) <b>keywords</b>: Useful for finding the similarity between the movies, as these words are often remembered by the users.
+</p>
+<p>
+    vi) original_language: May affect if also look for region of the user. In this case, we are only considering the content of the movie, hence not taken into the account.
+</p>
+<p>
+    vii) original_title: There may be multiple language, and here I am handling the cases for only one language, i.e. English. Hence, skipping this at the moment.
+</p>
+<p>
+    viii) <b>overview</b>: This contains the summary of the movie. This information is necessary to consider as it kind of characterizes the movie.
+</p>
+<p>
+    ix) 
+</p>
