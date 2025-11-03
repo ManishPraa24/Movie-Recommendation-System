@@ -203,11 +203,11 @@ Flow of implementation
 <p>
     CODE:
 </p>
-<ttt>
+<code>
     MOVIE_CSV = r"Dataset/tmdb_5000_movies.csv"
     CREDITS_CSV = r"Dataset/tmdb_5000_credits.csv"
-</ttt>
-<ttt>
+</code>
+<code>
     movies = pd.read_csv(MOVIE_CSV)
     credits = pd.read_csv(CREDITS_CSV)
-</ttt>
+</code>
