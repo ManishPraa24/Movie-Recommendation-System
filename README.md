@@ -196,3 +196,18 @@ Flow of implementation
         </td>
     </tr>
 </table>
+
+<p>
+    As the information in the tmdb_5000_credits.csv like 'cast' and 'crew' is required for further analysis, I merged both the dataframes into one. 
+</p>
+<p>
+    CODE:
+</p>
+<code>
+    MOVIE_CSV = r"Dataset/tmdb_5000_movies.csv"
+    CREDITS_CSV = r"Dataset/tmdb_5000_credits.csv"
+</code>
+<code>
+    movies = pd.read_csv(MOVIE_CSV)
+    credits = pd.read_csv(CREDITS_CSV)
+</code>
