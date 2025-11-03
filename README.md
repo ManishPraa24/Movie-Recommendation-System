@@ -234,7 +234,7 @@ Flow of implementation
     iii) homepage: Not required as it not helps in finding similar movie. A URL is always unique.
 </p>
 <p>
-    iv) movie_id: I have not used this but it is required for fetching the movie related information. This movie_id is provided by the TMDB.
+    iv) <b>movie_id</b>: It is required for fetching the movie related information. This movie_id is provided by the TMDB.
 </p>
 <p>
     v) <b>keywords</b>: Useful for finding the similarity between the movies, as these words are often remembered by the users.
@@ -374,14 +374,47 @@ Flow of implementation
     <b>CODE: </b>
 </p>
 <code>
-    extracted_features['cast'] = extracted_features['cast'].apply(lambda x: [i.replace(" ", "") for i in x])
+    extracted_movie_features['cast'] = extracted_movie_features['cast'].apply(lambda x: [i.replace(" ", "") for i in x])
 
-    extracted_features['crew'] = extracted_features['crew'].apply(lambda x: [i.replace(" ", "") for i in x])
+    extracted_movie_features['crew'] = extracted_movie_features['crew'].apply(lambda x: [i.replace(" ", "") for i in x])
 
-    extracted_features['keywords'] = extracted_features['keywords'].apply(lambda x: [i.replace(" ", "") for i in x])
+    extracted_movie_features['keywords'] = extracted_movie_features['keywords'].apply(lambda x: [i.replace(" ", "") for i in x])
 
-    extracted_features['overview'] = extracted_features['overview'].apply(lambda x: [i.replace(" ", "") for i in x])
+    extracted_movie_features['overview'] = extracted_movie_features['overview'].apply(lambda x: [i.replace(" ", "") for i in x])
 
 </code>
 
 <p>
+
+<p>
+    <b>Creating an attribute named 'tags'</b>
+</p>
+
+<p>
+    This 'tags' attribute will characterize the whole film, containing information like genre, crew & cast, overview, and keywords. 
+</p>
+
+<p>
+    <b>
+        CODE:
+    </b>
+</p>
+
+<code>
+    extracted_movie_features['tags'] = extracted_movie_features['genres'] + extracted_movie_features['keywords'] + extracted_movie_features['overview'] + extracted_movie_features['cast'] + extracted_movie_features['crew']
+
+    extracted_movie_features['tags'] = extracted_movie_features['tags'].apply(lambda x: " ".join(x))
+
+</code>
+
+<p>
+    After creating tags, the characters in text are transformed to lower ones in order to avoid unnecessary uniqueness, for e.g., Tom, TOM and tom means the same.
+</p>
+
+<p>
+    The text is then stemmed into it's base form. This is done in order to keep words will similar meaning in same form. E.g., going and gone means the same words as 'go'. Used nltk library for this task, specifically, nltk.stem.porter method's PorterStemmer class.
+</p>
+
+<h2>
+    4. Representation of tags
+</h2>
