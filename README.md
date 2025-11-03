@@ -251,3 +251,8 @@ Flow of implementation
 <p>
     ix) 
 </p>
+
+<p>
+    Below is the visualization of count of languages present in the dataset:
+</p>
+<img src="Language_Count.jpg">
